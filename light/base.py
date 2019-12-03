@@ -85,10 +85,10 @@ class BaseAPIView(GenericAPIView):
                 if isinstance(result_data, str):
                     result_data = eval(result_data)
 
-            if query_params != {} and query_params.get('params') is not None:
-                self.data_dict = query_params.get('params')
-            else:
+            if result_data is not None:
                 self.data_dict = result_data
+            else:
+                self.data_dict = query_params.get('params', query_params)
 
             # convert string value
             if isinstance(self.data_dict, str):
