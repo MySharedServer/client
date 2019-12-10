@@ -131,6 +131,9 @@ class BaseAPIView(GenericAPIView):
         except Error:
             logger.info("{0}: Operate database error occurred".format(self.__class__.__name__))
             rows = None
+        except Exception as e:
+            logger.info("{0}: Database connect occurred error {1}".format(self.__class__.__name__, e))
+            rows = None
 
         return rows
 
